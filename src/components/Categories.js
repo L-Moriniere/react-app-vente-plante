@@ -1,22 +1,30 @@
 import '../styles/Categories.css'
 
-function Categories({ setActiveCategory, categories, activeCategory }) {
+function Categories({setActiveCategory, categories, activeCategory}) {
+
+    function checkValue(e){
+        e.target.checked ?
+            setActiveCategory(cat => [...cat, e.target.value]) :
+            setActiveCategory(categories => categories.filter(category => category !== e.target.value))
+
+    }
+
+    console.log(activeCategory)
     return (
-        <div className='lmj-categories'>
-            <select
-                value={activeCategory}
-                onChange={(e) => setActiveCategory(e.target.value)}
-                className='lmj-categories-select'
-            >
-                <option value=''>---</option>
+        <fieldset>
+            <legend>Choisir la catégorie de plante</legend>
+            <div className='lmj-categories'>
                 {categories.map((cat) => (
-                    <option key={cat} value={cat}>
-                        {cat}
-                    </option>
+                    <div key={cat}>
+                        <input type='checkbox' value={cat} onChange={(e) => checkValue(e)}/>
+                        <label>{cat}</label>
+                    </div>
                 ))}
-            </select>
-            <button onClick={() => setActiveCategory('')}>Réinitialiser</button>
-        </div>
+
+                <button onClick={() => setActiveCategory('')}>Réinitialiser</button>
+            </div>
+
+        </fieldset>
     )
 }
 
