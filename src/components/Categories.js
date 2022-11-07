@@ -2,6 +2,8 @@ import '../styles/Categories.css'
 
 function Categories({setActiveCategory, categories, activeCategory}) {
 
+    //permet de filtrer la page, ajoute ou supprime
+    //les catégories de plante à afficher
     function checkValue(e){
         e.target.checked ?
             setActiveCategory(cat => [...cat, e.target.value]) :
@@ -9,19 +11,18 @@ function Categories({setActiveCategory, categories, activeCategory}) {
 
     }
 
-    console.log(activeCategory)
     return (
-        <fieldset>
+        <fieldset className='fieldset'>
             <legend>Choisir la catégorie de plante</legend>
             <div className='lmj-categories'>
                 {categories.map((cat) => (
-                    <div key={cat}>
+                    <div key={cat} className={"categories-input"}>
                         <input type='checkbox' value={cat} onChange={(e) => checkValue(e)}/>
                         <label>{cat}</label>
                     </div>
                 ))}
-
-                <button onClick={() => setActiveCategory('')}>Réinitialiser</button>
+                <br/>
+                <button className="button-reset" onClick={() => setActiveCategory([])}>Réinitialiser</button>
             </div>
 
         </fieldset>
