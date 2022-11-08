@@ -5,12 +5,17 @@ import Cart from './Cart'
 import Footer from './Footer'
 import ShoppingList from './ShoppingList'
 import '../styles/Layout.css'
+import Modal from 'react-modal';
+
+
+Modal.setAppElement('#root');
 
 function App() {
     const savedCart = localStorage.getItem('cart')
-
-
     const [cart, updateCart] = useState(savedCart ? JSON.parse(savedCart) : [])
+    const [modalIsOpen, setIsOpen] = useState(false)
+
+
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))
@@ -24,7 +29,7 @@ function App() {
             </Banner>
             <div className='lmj-layout-inner'>
                 <Cart cart={cart} updateCart={updateCart}/>
-                <ShoppingList cart={cart} updateCart={updateCart}/>
+                <ShoppingList cart={cart} updateCart={updateCart} modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}/>
             </div>
             <Footer/>
         </div>
