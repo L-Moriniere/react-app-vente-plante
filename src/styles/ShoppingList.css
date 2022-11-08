@@ -9,3 +9,14 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.button-achat{
+    margin-top: 10px;
+    background-color: #21b278;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 8px 20px;
+    float: right;
+}
